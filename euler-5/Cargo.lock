@@ -1,0 +1,11 @@
+[root]
+name = "euler-5"
+version = "0.1.0"
+dependencies = [
+ "primes 0.1.0",
+]
+
+[[package]]
+name = "primes"
+version = "0.1.0"
+
