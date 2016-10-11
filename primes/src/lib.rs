@@ -5,6 +5,10 @@ pub struct Primes {
     curr: u64,
 }
 
+pub trait PrimeInfo {
+    fn prime_factors(&mut self) -> Vec<u64>;
+}
+
 impl Primes {
     pub fn new() -> Primes {
         Primes {
@@ -36,5 +40,22 @@ impl Iterator for Primes {
             }
         }
         Some(self.curr)
+    }
+}
+
+impl PrimeInfo for u64 {
+    fn prime_factors(&mut self) -> Vec<u64> {
+        let mut primes = Primes::new();
+        let mut result = Vec::new();
+        let mut num = *self;
+        let mut cur_prime = primes.next().unwrap();
+        while num > 1_u64 {
+            while (num % cur_prime) != 0 {
+                cur_prime = primes.next().unwrap();
+            }
+            num = num / cur_prime;
+            result.push(cur_prime);
+        }
+        result
     }
 }
