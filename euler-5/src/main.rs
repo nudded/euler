@@ -9,7 +9,7 @@ fn main() {
     for x in 2..21 {
         let prime_fact = (x as u64).prime_factors();
         let mut count_map: HashMap<u64, u64> = HashMap::new();
-        for &x in prime_fact.iter() {
+        for x in prime_fact {
             *count_map.entry(x).or_insert(0) += 1
         }
 
